@@ -18,8 +18,6 @@ public class CmdParser {
     public FileScannerParams parse(String cmd){
         String[] args = cmd.split(" ");
 
-
-
         if (args[0].equals("quit"))
             return null;
         if (args.length < 12)

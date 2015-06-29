@@ -22,14 +22,10 @@ public class Runner {
             }
             try {
                 FileScannerParams params = parser.parse(cmdLine);
-                //scheduler.scheduleAtFixedRate(new FileScanner(params), (long)params.getWaitInterval(), TimeUnit.MILLISECONDS);
                 scheduler.scheduleAtFixedRate(new FileScanner(params), 0, params.getWaitInterval(), TimeUnit.MILLISECONDS);
             } catch (IllegalArgumentException ex){
                 System.out.println(ex.getMessage());
             }
-
-
-
         }
     }
 }
