@@ -4,7 +4,7 @@ public class FileScannerParams {
     private String inputFolderName;
     private String outputFolderName;
     private String fileMask;
-    private int waitInterval;
+    private long waitInterval;
     private boolean includeSubFolders;
     private boolean autoDelete;
 
@@ -32,11 +32,11 @@ public class FileScannerParams {
         return fileMask;
     }
 
-    public int getWaitInterval() {
+    public long getWaitInterval() {
         return waitInterval;
     }
 
-    public void setWaitInterval(int waitInterval) {
+    public void setWaitInterval(long waitInterval) {
         this.waitInterval = waitInterval;
     }
 

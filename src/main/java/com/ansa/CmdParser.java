@@ -1,5 +1,7 @@
 package com.ansa;
 
+import java.util.Locale;
+
 public class CmdParser {
 
     private static final String INPUT = "-input";
@@ -16,6 +18,12 @@ public class CmdParser {
     public FileScannerParams parse(String cmd){
         String[] args = cmd.split(" ");
 
+
+
+        if (args[0].equals("quit"))
+            return null;
+        if (args.length < 12)
+            throw new IllegalArgumentException("Usage:");
         if (!args[0].equals("scan"))
             throw new IllegalArgumentException("Unsupported command " + args[0]);
 
@@ -24,7 +32,6 @@ public class CmdParser {
         FileScannerParams params = new FileScannerParams();
 
         while (indx < args.length){
-            System.out.println("current value = " + args[indx]);
             switch (args[indx]){
                 case INPUT:
                     params.setInputFolderName(args[++indx]);
@@ -36,7 +43,7 @@ public class CmdParser {
                     params.setFileMask(args[++indx]);
                     break;
                 case WAIT_INTERVAL:
-                    params.setWaitInterval(Integer.parseInt(args[++indx]));
+                    params.setWaitInterval(Long.parseLong(args[++indx]));
                     break;
                 case INCLUDE_SUB_FOLDERS:
                     params.setIncludeSubFolders(Boolean.parseBoolean(args[++indx]));
