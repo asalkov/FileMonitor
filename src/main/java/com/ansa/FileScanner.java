@@ -1,6 +1,9 @@
 package com.ansa;
 
+import org.apache.commons.io.filefilter.WildcardFileFilter;
+
 import java.io.File;
+import java.io.FileFilter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -19,12 +22,14 @@ public class FileScanner implements Runnable {
 
 
         Path inputPath = Paths.get(params.getInputFolderName());
+        Path outputPath = Paths.get(params.getOutputFolderName());
 
-        File inputFile = inputPath.toFile();
-        for (File file : inputFile.listFiles()){
-            System.out.println(file.getName().matches(params.getFileMask()));
+        FileFilter fileFilter = new WildcardFileFilter(params.getFileMask());
+        for (File file : inputPath.toFile().listFiles(fileFilter)){
+
 
         }
+
 
 
 
