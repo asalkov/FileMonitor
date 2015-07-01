@@ -10,6 +10,8 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class FileScannerTest {
 
@@ -77,7 +79,8 @@ public class FileScannerTest {
 
 
 
-        print(inputDir);
+
+        printStream(inputDir);
         print(outputDir);
 
         FileUtils.deleteRecursively(inputDir);
@@ -85,6 +88,12 @@ public class FileScannerTest {
 
     }
 
+
+
+    private void printStream(Path inputDir) throws IOException {
+        System.out.println("Print Stream " + inputDir);
+        Files.walk(inputDir).forEach(System.out::println);
+    }
     private void print(Path inputDir) {
         System.out.println("Print " + inputDir);
         LinkedList<File> q = new LinkedList<>();
