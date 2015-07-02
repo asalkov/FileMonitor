@@ -7,15 +7,17 @@ import java.io.RandomAccessFile;
 
 
 public class BigFileProcessing {
+    private static final int megabyte = 1024 * 1024;
     public static void main(String[] args){
+
         try {
             RandomAccessFile file = new RandomAccessFile(new File("data/testData"), "r");
 
-            FileChunkedReader reader = new FileChunkedReader(file, 5);
+            FileChunkedReader reader = new FileChunkedReader(file, megabyte * 5);
             while (reader.hasNext()){
                 FileChunk fileChunk = reader.next();
                 ByteBufferWrap wrap = new ByteBufferWrap(fileChunk.getBuffer());
-                while (wrap.hashNext()){
+                while (wrap.hashNext()) {
                     System.out.println(wrap.readLine());
                 }
             }
@@ -24,8 +26,6 @@ public class BigFileProcessing {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
     private static String readLine(){
